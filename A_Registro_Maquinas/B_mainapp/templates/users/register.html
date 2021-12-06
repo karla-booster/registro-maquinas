@@ -1,0 +1,53 @@
+{% extends 'layouts/layout.html'%}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+    <h1 class="display-4">{{title}}</h1>
+    <hr/>
+
+    <div class="row pt-4">
+        {{register_form.errors}}
+    </div>
+        
+    <form method="post" action="">
+        {% csrf_token %}
+
+        <div class="col-8 pt-4">
+            <label class="form-label">Número de Empleado</label>
+            <input type="username" class="form-control" id="username">
+        </div>
+
+        <div class="col-8 pt-4">
+            <label class="form-label">Nombre y Apellido</label>
+            <input type="first_name" class="form-control" id="first_name">
+        </div>
+
+        <div class="col-8  pt-4">
+            <label for="last_name" class="form-label">Departamento</label>
+            <select id="inputState" class="form-select">
+                <option selected>Selecciona...</option>
+                <option>Producción</option>
+                <option>Mantenimiento</option>
+                <option>Ingeniería</option>
+                <option>Calidad</option>
+                <option>Supply Chain</option>
+            </select>
+        </div>
+
+        <div class="col-8  pt-4">
+            <label for="inputPassword" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="inputPassword">
+        </div>
+
+        <div class="col-8  pt-4">
+            <label for="inputPassword2" class="form-label">Contraseña (confirmación)</label>
+            <input type="password" class="form-control" id="inputPassword2">
+        </div>
+
+        <div class="col-8  pt-4">    
+            <input class="col p-2 px-3 btn btn-primary" type="submit" value="Registrarse" />
+        </div>
+    </form>
+    
+{% endblock %}

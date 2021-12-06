@@ -1,0 +1,35 @@
+
+<form class='row' method="POST" action=''>
+    {% csrf_token %}
+    <div class="col form-floating">
+        <select class="form-select" id="estado" name="estado" aria-label="estado">
+            <option value="-1" selected> </option>
+            {% for op_estados in op_estados %}
+                <option value="{{op_estados.id}}">{{op_estados.estado}}</option>
+            {% endfor %}
+        </select>
+        <label for="estado" class="ps-3">Cambio de Estado</label>
+    </div>
+    
+    <div class="col form-floating">
+        <textarea class="form-control" placeholder="Comentarios" id="comment" name="comment"></textarea>
+        <label for="comment">Comentarios</label>
+    </div>
+
+    <div class="col align-self-center">
+        <button type="submit" class="btn btn-primary p-2">Cambiar</button>
+    </div>
+</form>
+
+<script type='text/javascript'>
+    $.ajax({
+        url: '/login/auto',
+        data: {
+          'qrdata': resultado,
+        },
+        dataType: 'json',
+        success: function(data){
+          document.forms.qrform.submit();
+        }
+      });
+</script>

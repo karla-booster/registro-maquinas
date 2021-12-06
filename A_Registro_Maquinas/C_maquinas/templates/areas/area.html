@@ -1,0 +1,12 @@
+{% extends 'layouts/layout.html'%}
+
+{% block title %} {{area.name}} {% endblock %}
+
+{% block content %}
+
+    <h1 class="display-5">{{area.name}}</h1>
+    <hr/>
+    
+    {% include 'maquinas/maquinas.html' %}
+
+{% endblock %}

@@ -1,0 +1,29 @@
+
+<div class="row bg-success text-light gap-1">
+    <div class="col p-2 text-center border border-dark border-3">
+        {% for registroact in registroact %}
+            {{registroact.estado}}
+        {% endfor %}
+    </div>
+    <div class="col p-2 text-center border border-dark border-3">
+        {% for registroact in registroact %}
+            {{today}}
+        {% endfor %}
+    </div>
+    <div class="col-2 p-2 text-center border border-dark border-3">
+        {% for registroact in registroact %}
+            {{registroact.departamento}}
+        {% endfor %}
+    </div>
+    <div class="col-2 p-2 text-center border border-dark border-3">
+        {% for registroact in registroact %}
+            {{registroact.usuario}}
+        {% endfor %}
+    </div>
+</div>
+
+<div class="row p-1 text-center border">
+    {% for registroact in registroact %}
+        {{registroact.comment}}
+    {% endfor %}
+</div>

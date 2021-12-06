@@ -1,0 +1,65 @@
+
+{% extends 'layouts/layout.html'%}
+
+{% block title %} {{maquina.title}} {% endblock %}
+
+{% block content %}
+
+        <h1 class="display-5 pt-4">{{maquina.title}}</h1>
+        <hr/>
+        
+        <div class="col-12 p-2 pt-4">
+            <h4> Estado Actual </h4>
+            <div class="container-fluid p-2 py-3">
+                {% include 'reg_est/est_act.html' %}
+            </div>
+            <div class="container-fluid pt-3">
+                {% include 'reg_est/cambio_est.html' %}
+            </div>
+        </div>
+
+        <div class="col p-2 pt-4">
+            <h4> Plan de Producción </h4>
+            <div class="container-fluid p-2 pt-3">
+                {% include 'reg_orden/orden_act.html' %}
+            </div>
+            <div class="container-fluid pt-3">
+                {% include 'reg_orden/cambio_ord.html' %}
+            </div>
+        </div>
+
+        <div class="col-12 p-2 pt-4">
+            <h4> Proxima Orden </h4>
+            <div class="container-fluid p-2 pt-3">
+                {% include 'reg_orden/prox_orden.html' %}
+            </div>
+        </div>
+        
+        <!--
+        <div class="col-12 p-2 pt-4">
+            <h4> Historial de Producción </h4>
+            <div class="container-fluid p-2 pt-3">
+                {% include 'reg_orden/hist_orden.html' %}
+            </div>
+        </div>
+        -->
+
+        <div class="col-12 p-2 pt-4" >
+            <h4> Historial de estados </h4>
+            <div class="container-fluid p-2 pt-3">
+                {% include 'reg_est/hist_est.html' %}
+            </div>
+        </div>
+
+{% endblock %}
+
+<script type="text/javascript">
+  window.onload=function(){
+        var auto = setTimeout(function(){ autoRefresh(); }, 10000);
+
+        function autoRefresh(){
+           clearTimeout(auto);
+           auto = setTimeout(function(){ autoRefresh();}, 10000000);
+        }
+    }
+</script>

@@ -1,0 +1,108 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/bootstrap.min.css' %}" />
+
+    <title>{{title}} | BOOSTER</title>
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/signin.css' %}" />
+  </head>
+  <body class="text-center">
+    
+    <main class="form position-absolute top-50 start-50 translate-middle">
+
+      <div class='col center'>
+
+        <img class="mb-4" img src="{% static 'images/logo1.png' %}" alt="" width="250" height="57">
+
+            <h1 class="h3 mb-3 fw-normal pt-3 pb-2">Iniciar Sesión</h1>
+
+        <!--
+        <form method="POST" action="">
+            {% csrf_token %}
+
+            <div class="form-floating">
+                <input type="username" class="form-control" name="username" placeholder="Numero de Empleado">
+                <label for="username">Número de Empleado</label>
+            </div>
+            <div class="form-floating pb-3">
+                <input type="password" class="form-control" name="password" placeholder="Contraseña">
+                <label for="password">Contraseña</label>
+            </div>
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit" value="Iniciar Sesión">Iniciar Sesión</button>
+
+            <br><br>
+
+        </form>
+        -->
+
+        <form name="qrform" action=''>
+          {% csrf_token %}
+
+          <div class="form-floating" id="qr-reader" style="width: 400px"></div>
+          <div id="qrdata" style='display:none'></div>
+        
+        </form>
+
+        <p class="mt-5 mb-3 text-muted">Estado de Maquinas &copy; - {% now "d/m/Y" %}</p>
+
+      </div>
+    </main>
+    
+  </body>
+</html>
+
+<script type="text/javascript">
+
+  var resultado;
+
+  function onScanSuccess(decodedText, decodedResult) {
+    console.log(`Code scanned = ${decodedText}`, decodedResult);
+    document.getElementById('qrdata').innerHTML = decodedText;
+    resultado=decodedText;
+      $.ajax({
+        url: '/login/auto',
+        data: {
+          'qrdata': resultado,
+        },
+        dataType: 'json',
+        success: function(data){
+          document.forms.qrform.submit();
+        }
+      });
+    html5QrcodeScanner.clear();
+    }
+
+  var html5QrcodeScanner = new Html5QrcodeScanner(
+    "qr-reader", { fps: 10, qrbox: 250 });
+            
+  html5QrcodeScanner.render(onScanSuccess);
+
+</script>
+

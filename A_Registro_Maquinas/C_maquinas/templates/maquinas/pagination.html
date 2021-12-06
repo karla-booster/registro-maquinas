@@ -1,0 +1,25 @@
+<div class="pagination">
+    
+    {% if maquinas.has_previous %}
+
+        <a href="?page=1">&laquo; Primero</a>
+        <a href="?page={{maquinas.previous_page_number}}">
+            Anterior
+        </a>
+
+    {% endif %}
+
+    <span class="actual">
+        Página {{maquinas.number}} de {{maquinas.paginator.num_pages}}
+    </span>
+
+    {% if maquinas.has_next %}
+
+        <a href="?page={{maquinas.next_page_number}}">
+            Siguiente
+        </a>
+        <a href="?page={{maquinas.paginator.num_pages}}">Ultima &raquo;</a>
+
+    {% endif %}
+
+</div>

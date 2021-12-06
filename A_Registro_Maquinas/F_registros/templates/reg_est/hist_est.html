@@ -1,0 +1,23 @@
+<div id="" style="overflow:auto; height:200px; border: 1px orange;">
+    <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                <th scope="col">Estado</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Departamento</th>
+                <th scope="col">Usuario</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for registro in registrohist %}
+                    <tr>
+                    <td>{{registro.estado}}</td>
+                    <td>{{registro.created_at}}</td>
+                    <td>{{registro.departamento}}</td>
+                    <td>{{registro.usuario}}</td>
+                    <td>{{registro.comment}}</td>
+                    </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+</div>

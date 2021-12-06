@@ -1,0 +1,8 @@
+{% for maquina in maquinas %}
+    <div class="col-12 pt-4">
+        <a class="text-black text-decoration-none fs-4" href="{% url 'maquinas' maquina.id %}">
+            {{maquina.title}}
+        </a>
+    </div>
+{% endfor %}
+
